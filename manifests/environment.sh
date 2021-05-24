@@ -4,16 +4,16 @@
 export ENCRYPTION_KEY=$(head -c 32 /dev/urandom | base64)
 
 # 集群各机器 IP 数组
-export NODE_IPS=(172.27.138.251 172.27.137.229 172.27.138.239)
+export NODE_IPS=(192.168.0.215 192.168.0.216 192.168.0.217)
 
 # 集群各 IP 对应的主机名数组
-export NODE_NAMES=(zhangjun-k8s-01 zhangjun-k8s-02 zhangjun-k8s-03)
+export NODE_NAMES=(k8s-01 k8s-02 k8s-03)
 
 # etcd 集群服务地址列表
-export ETCD_ENDPOINTS="https://172.27.138.251:2379,https://172.27.137.229:2379,https://172.27.138.239:2379"
+export ETCD_ENDPOINTS="https://192.168.0.215:2379,https://192.168.0.216:2379,https://192.168.0.217:2379"
 
 # etcd 集群间通信的 IP 和端口
-export ETCD_NODES="zhangjun-k8s-01=https://172.27.138.251:2380,zhangjun-k8s-02=https://172.27.137.229:2380,zhangjun-k8s-03=https://172.27.138.239:2380"
+export ETCD_NODES="k8s-01=https://192.168.0.215:2380,k8s-02=https://192.168.0.216:2380,k8s-03=https://192.168.0.217:2380"
 
 # kube-apiserver 的反向代理(kube-nginx)地址端口
 export KUBE_APISERVER="https://127.0.0.1:8443"
@@ -45,19 +45,19 @@ BOOTSTRAP_TOKEN="41f7e4ba8b7be874fcff18bf5cf41a7c"
 # 最好使用 当前未用的网段 来定义服务网段和 Pod 网段
 
 # 服务网段，部署前路由不可达，部署后集群内路由可达(kube-proxy 保证)
-SERVICE_CIDR="10.254.0.0/16"
+SERVICE_CIDR="10.200.0.0/16"
 
 # Pod 网段，建议 /16 段地址，部署前路由不可达，部署后集群内路由可达(flanneld 保证)
-CLUSTER_CIDR="172.30.0.0/16"
+CLUSTER_CIDR="10.100.0.0/16"
 
 # 服务端口范围 (NodePort Range)
 export NODE_PORT_RANGE="30000-32767"
 
 # kubernetes 服务 IP (一般是 SERVICE_CIDR 中第一个IP)
-export CLUSTER_KUBERNETES_SVC_IP="10.254.0.1"
+export CLUSTER_KUBERNETES_SVC_IP="10.200.0.1"
 
 # 集群 DNS 服务 IP (从 SERVICE_CIDR 中预分配)
-export CLUSTER_DNS_SVC_IP="10.254.0.2"
+export CLUSTER_DNS_SVC_IP="10.200.0.2"
 
 # 集群 DNS 域名（末尾不带点号）
 export CLUSTER_DNS_DOMAIN="cluster.local"
