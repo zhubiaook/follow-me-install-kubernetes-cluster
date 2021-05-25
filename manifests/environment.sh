@@ -16,7 +16,7 @@ export ETCD_ENDPOINTS="https://192.168.0.215:2379,https://192.168.0.216:2379,htt
 export ETCD_NODES="k8s-01=https://192.168.0.215:2380,k8s-02=https://192.168.0.216:2380,k8s-03=https://192.168.0.217:2380"
 
 # kube-apiserver 的反向代理(kube-nginx)地址端口
-export KUBE_APISERVER="https://127.0.0.1:8443"
+export KUBE_APISERVER="https://192.168.0.218:6443"
 
 # 节点间互联网络接口名称
 export IFACE="eth0"
